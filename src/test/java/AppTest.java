@@ -1,6 +1,6 @@
-import javax.mail.Authenticator;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class AppTest {
@@ -29,7 +29,15 @@ public class AppTest {
                 }
             });
 
-            System.out.println(password);
+            Address[] toUser = InternetAddress.parse("anthonychukwudi01@outlook.com, anthonychukwuditestes01@gmail.com, anthonychukwudi02@outlook.com");
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(userName, "Anthony"));/*Quem esta enviando*/
+            message.setRecipients(Message.RecipientType.TO, toUser);/*Email de destino*/
+            message.setSubject("Primeiro email enviado co java");/*Assunto do email*/
+            message.setText("voce esta aprendendo a enviar mensagens usando o javamail");/*Enviando o email*/
+
+            Transport.send(message);
         }catch (Exception e){
             e.printStackTrace();
         }
