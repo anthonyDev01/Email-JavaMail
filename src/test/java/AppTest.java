@@ -23,7 +23,7 @@ public class AppTest {
                 stringBuilderTextoEmail.toString()
         );
 
-        enviaEmail.EnviarEmail(true);
+        enviaEmail.EnviarEmailComAnexo(true);
 
     }
 }
