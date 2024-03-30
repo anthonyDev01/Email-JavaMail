@@ -14,12 +14,14 @@ import javax.mail.util.ByteArrayDataSource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class ObjetoEnviaEmail {
 
-    private String userName = "anthonytestes01@gmail.com";
-    private String password = "jzxv bxwl ceud ycjs";
+    private String userName = "";
+    private String password = "";
 
     private String listaDestinatarios = "";
     private String nomeRemetente = "";
@@ -109,15 +111,24 @@ public class ObjetoEnviaEmail {
                 corpoEmail.setText(mensagemEmail);/*mensagem do email*/
             }
 
-            /*Parte 2 do e-mail que é o anexo*/
-            MimeBodyPart anexoEmail = new MimeBodyPart();
-
-            anexoEmail.setDataHandler(new DataHandler(new ByteArrayDataSource(simuladorDePDF(), "application/pdf")));
-            anexoEmail.setFileName("anexoemail.pdf");
-
+            List<FileInputStream> arquivos = new ArrayList<FileInputStream>();
+            arquivos.add(simuladorDePDF());
+            arquivos.add(simuladorDePDF());
+            arquivos.add(simuladorDePDF());
+            arquivos.add(simuladorDePDF());
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(corpoEmail);
-            multipart.addBodyPart(anexoEmail);
+
+            int index = 1;
+            for (FileInputStream fileInputStream : arquivos){
+                /*Parte 2 do e-mail que é o anexo*/
+                MimeBodyPart anexoEmail = new MimeBodyPart();
+                anexoEmail.setDataHandler(new DataHandler(new ByteArrayDataSource(fileInputStream, "application/pdf")));
+                anexoEmail.setFileName("anexoemail" + index + ".pdf");
+                multipart.addBodyPart(anexoEmail);
+
+                index++;
+            }
 
             message.setContent(multipart);
 
