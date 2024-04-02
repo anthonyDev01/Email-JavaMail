@@ -20,8 +20,8 @@ import java.util.Properties;
 
 public class ObjetoEnviaEmail {
 
-    private String userName = "";
-    private String password = "";
+    private String userName = "anthonytestes01@gmail.com";
+    private String password = "jzxv bxwl ceud ycjs";
 
     private String listaDestinatarios = "";
     private String nomeRemetente = "";

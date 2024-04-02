@@ -19,7 +19,7 @@ public class AppTest {
         ObjetoEnviaEmail enviaEmail = new ObjetoEnviaEmail(
                 "anthonytestes01@gmail.com",
                 "Anthony",
-                "Testando Envio de emails com Html",
+                "Testando Envio de emails com Html e CSS",
                 stringBuilderTextoEmail.toString()
         );
 
